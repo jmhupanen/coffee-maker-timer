@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coffee Maker Timer ☕</title>
+  <meta name="description" content="An interactive 3D coffee maker timer with realistic brewing animation and countdown timer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+
+    <header id="site-header">
+      <div class="logo">
+        <span class="logo-icon">☕</span>
+        <span class="logo-text">Coffee Maker Timer</span>
+      </div>
+      <div class="header-tagline">Brewing Simulator</div>
+    </header>
+
+    <main id="site-main">
+
+      <!-- 3D Canvas -->
+      <div id="canvas-wrapper">
+        <canvas id="threejs-canvas"></canvas>
+        <div id="loading-overlay">
+          <div class="loader-spinner"></div>
+        </div>
+        <div id="done-overlay" class="hidden">
+          <div class="done-content">
+            <div class="done-icon">☕</div>
+            <div class="done-title">Coffee Ready!</div>
+            <div class="done-sub">Enjoy your brew</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Control Panel -->
+      <aside id="control-panel">
+
+        <!-- Cup Selector -->
+        <section class="panel-card" id="cup-card">
+          <span class="card-label">CUPS TO BREW</span>
+          <div class="cup-row">
+            <button id="cup-dec" class="icon-btn" aria-label="Fewer cups">−</button>
+            <div class="cup-display">
+              <span id="cup-count">6</span>
+              <span class="cup-unit">cups</span>
+            </div>
+            <button id="cup-inc" class="icon-btn" aria-label="More cups">+</button>
+          </div>
+          <div id="cup-dots" class="cup-dots" aria-hidden="true"></div>
+          <div id="brew-time-hint" class="brew-time-hint"></div>
+        </section>
+
+        <!-- Timer -->
+        <section class="panel-card" id="timer-card">
+          <div id="phase-label" class="phase-label">Ready to brew</div>
+          <div id="timer" class="timer-display">03:48</div>
+          <div class="progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            <div id="progress-fill" class="progress-fill"></div>
+          </div>
+          <div class="fill-label">
+            <span id="fill-pct">0%</span>
+            <span>carafe fill</span>
+          </div>
+        </section>
+
+        <!-- Buttons -->
+        <section class="panel-card" id="action-card">
+          <button id="start-btn" class="btn btn-primary">
+            <span class="btn-icon" id="start-icon">▶</span>
+            <span id="start-label">Start Brewing</span>
+          </button>
+          <button id="reset-btn" class="btn btn-secondary" disabled>
+            <span class="btn-icon">↺</span>
+            <span>Reset</span>
+          </button>
+        </section>
+
+        <!-- Speed Multiplier -->
+        <section class="panel-card" id="speed-card">
+          <span class="card-label">BREW SPEED</span>
+          <div class="speed-btns" id="speed-btns">
+            <button class="speed-btn active" data-speed="1">1×</button>
+            <button class="speed-btn" data-speed="2">2×</button>
+            <button class="speed-btn" data-speed="5">5×</button>
+            <button class="speed-btn" data-speed="10">10×</button>
+            <button class="speed-btn" data-speed="30">30×</button>
+          </div>
+        </section>
+
+        <!-- Color Picker -->
+        <section class="panel-card" id="color-card">
+          <span class="card-label">MACHINE COLOR</span>
+          <div class="color-swatches" id="color-swatches">
+            <button class="color-swatch active" data-color="#A8A8A8" title="Polished Silver" style="--c:#A8A8A8"></button>
+            <button class="color-swatch" data-color="#F0EBE1" title="Off White" style="--c:#F0EBE1"></button>
+            <button class="color-swatch" data-color="#262626" title="Matte Black" style="--c:#262626"></button>
+            <button class="color-swatch" data-color="#C42B2B" title="Cherry Red" style="--c:#C42B2B"></button>
+            <button class="color-swatch" data-color="#2E9E94" title="Turquoise" style="--c:#2E9E94"></button>
+            <button class="color-swatch" data-color="#4A8F5B" title="Sage Green" style="--c:#4A8F5B"></button>
+            <button class="color-swatch" data-color="#C97B6B" title="Dusty Rose" style="--c:#C97B6B"></button>
+            <button class="color-swatch" data-color="#B87B44" title="Copper" style="--c:#B87B44"></button>
+          </div>
+          <div id="color-name" class="color-name">Polished Silver</div>
+        </section>
+
+      </aside>
+    </main>
+
+  </div>
+
+  <footer id="attribution">
+    3D model <a href="https://sketchfab.com/3d-models/moccamaster-903906cf2a864ec8bd200982919295e2" target="_blank" rel="noopener noreferrer">"Moccamaster"</a>
+    by <a href="https://sketchfab.com/niko.rummukainen" target="_blank" rel="noopener noreferrer">niko.rummukainen</a>
+    — <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>
+  </footer>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
