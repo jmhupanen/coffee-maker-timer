@@ -2,7 +2,6 @@ import * as THREE from 'https://esm.sh/three@0.168.0';
 import { OrbitControls } from 'https://esm.sh/three@0.168.0/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'https://esm.sh/three@0.168.0/addons/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'https://esm.sh/three@0.168.0/addons/loaders/DRACOLoader.js';
-
 // ── Constants ─────────────────────────────────────────────────────────────────
 const PREHEAT = 30;
 const PER_CUP = 33;
@@ -71,7 +70,7 @@ function initScene() {
   renderer.setClearColor(0x000000, 0);
 
   camera = new THREE.PerspectiveCamera(40, 1, 0.1, 60);
-  camera.position.set(0, 2.2, 8.0);
+  camera.position.set(8.0, 2.2, 0.0);
   camera.lookAt(0, 1.8, 0);
 
   scene = new THREE.Scene();
@@ -80,7 +79,7 @@ function initScene() {
   scene.add(new THREE.HemisphereLight(0xfff8e7, 0x554433, 3.5));
 
   const key = new THREE.DirectionalLight(0xfff5e0, 4.0);
-  key.position.set(4, 7, 4);
+  key.position.set(4, 7, -4);
   key.castShadow = true;
   key.shadow.mapSize.width = 2048;
   key.shadow.mapSize.height = 2048;
@@ -94,26 +93,26 @@ function initScene() {
 
   // Front fill
   const front = new THREE.DirectionalLight(0xffffff, 2.5);
-  front.position.set(0, 2, 8);
+  front.position.set(8, 2, 0);
   scene.add(front);
 
   // Left fill
   const left = new THREE.DirectionalLight(0xeef4ff, 2.0);
-  left.position.set(-6, 3, 3);
+  left.position.set(3, 3, 6);
   scene.add(left);
 
   // Right fill
   const right = new THREE.DirectionalLight(0xfff0e0, 2.0);
-  right.position.set(6, 3, 3);
+  right.position.set(3, 3, -6);
   scene.add(right);
 
   // Back fill — stops the rear faces from being completely black
   const back = new THREE.DirectionalLight(0xffffff, 1.5);
-  back.position.set(0, 4, -7);
+  back.position.set(-7, 4, 0);
   scene.add(back);
 
   const rim = new THREE.DirectionalLight(0xffffff, 1.2);
-  rim.position.set(-3, 6, -5);
+  rim.position.set(-5, 6, 3);
   scene.add(rim);
 
   const ground = new THREE.Mesh(
